@@ -1,0 +1,7 @@
+/.env
+
+/logs
+
+/dags/__pycache__
+
+/data
