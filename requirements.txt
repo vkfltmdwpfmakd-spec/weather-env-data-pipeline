@@ -12,6 +12,12 @@ SQLAlchemy==1.4.52
 # PostgreSQL과 파이썬을 연결하는 드라이버
 psycopg2-binary==2.9.9
 
+# dbt 패키지 
+dbt-core==1.7.0
+
+# dbt Postgres 연동
+dbt-postgres==1.7.0
+
 # 클라우드 전환 시 추가 라이브러리
 # google-cloud-storage==2.17.0
 

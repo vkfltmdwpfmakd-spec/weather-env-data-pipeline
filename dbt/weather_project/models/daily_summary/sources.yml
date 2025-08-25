@@ -1,0 +1,13 @@
+# dbt 버전 2 사용
+version: 2
+
+# 원본 데이터 소스들을 정의하는 섹션
+sources:
+
+  # 소스 그룹의 이름을 정의
+  - name: public
+
+    # 이 소스 그룹에 속한 테이블
+    tables:
+      - name: kma_short_forecast_staging
+      - name: airkorea_air_quality_staging

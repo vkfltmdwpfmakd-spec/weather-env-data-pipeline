@@ -5,3 +5,13 @@
 /dags/__pycache__
 
 /data
+
+# dbt 관련 파일들
+/dbt/logs/
+/dbt/target/
+/dbt/**/*.log
+/dbt/profiles/profiles.yml
+
+# 임시 파일
+*.tmp
+*.swp

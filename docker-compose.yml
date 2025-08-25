@@ -39,6 +39,8 @@ services:
             - ./dags:/opt/airflow/dags       # 로컬의 dags 폴더를 컨테이너의 dags 폴더와 동기화 (DAG 파일 관리)
             - ./plugins:/opt/airflow/plugins # 로컬의 plugins 폴더를 컨테이너의 plugins 폴더와 동기화
             - ./data:/opt/airflow/data       # 로컬의 data 폴더를 컨테이너의 data 폴더와 동기화 (데이터 임시 저장)
+            - ./dbt/weather_project:/opt/airflow/dbt/weather_project # 로컬의 dbt 폴더를 컨테이너의 dbt 폴더와 동기화 (dbt 프로젝트 관리)
+            - ./dbt/profiles:/home/airflow/.dbt 
         ports:
             - "8080:8080"
         command: webserver
@@ -58,6 +60,8 @@ services:
             - ./logs:/opt/airflow/logs
             - ./plugins:/opt/airflow/plugins
             - ./data:/opt/airflow/data
+            - ./dbt/weather_project:/opt/airflow/dbt/weather_project
+            - ./dbt/profiles:/home/airflow/.dbt
         command: scheduler
 
     jupyter:
