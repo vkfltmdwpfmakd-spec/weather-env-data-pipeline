@@ -18,14 +18,14 @@ def transform_data_with_dbt_pipeline():
     """
         dbt 변환(Transform) 파이프라인
         - 이 DAG는 `dbt run` 명령어를 실행하여 Staging 테이블의 데이터를 최종 분석용 테이블(Analytics)로 변환
-        - `load_data_from_minio_to_postgres` DAG가 성공적으로 완료된 후에 실행되어야 함
+        - `data_quality_check` DAG가 성공적으로 완료된 후에 실행되어야 함
     """
 
-    wait_for_load_dag = ExternalTaskSensor(
-        task_id = "wait_for_load_dag",
-        external_dag_id = "load_data_from_minio_to_postgres",
+    wait_for_quality_check_dag = ExternalTaskSensor(
+        task_id = "wait_for_quality_check_dag",
+        external_dag_id = "data_quality_check",
         external_task_id = None,
-        timeout = 300,
+        timeout = 600,
         poke_interval = 30,
         mode = 'poke'
     )
@@ -56,6 +56,6 @@ def transform_data_with_dbt_pipeline():
     )
 
     # 의존성 설정
-    wait_for_load_dag >> dbt_run_task
+    wait_for_quality_check_dag >> dbt_run_task
 
 transform_data_with_dbt_pipeline()  # DAG 실행

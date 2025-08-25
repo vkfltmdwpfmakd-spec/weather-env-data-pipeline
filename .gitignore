@@ -11,6 +11,14 @@
 /dbt/target/
 /dbt/**/*.log
 /dbt/profiles/profiles.yml
+/dbt/.ipynb_checkpoints/
+
+# Great Expectations 관련 파일들
+/notebooks/gx/uncommitted/
+/notebooks/gx/plugins/
+
+# Jupyter 관련 파일들
+.ipynb_checkpoints/
 
 # 임시 파일
 *.tmp

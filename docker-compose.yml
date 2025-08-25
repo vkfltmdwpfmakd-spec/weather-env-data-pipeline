@@ -41,6 +41,7 @@ services:
             - ./data:/opt/airflow/data       # 로컬의 data 폴더를 컨테이너의 data 폴더와 동기화 (데이터 임시 저장)
             - ./dbt/weather_project:/opt/airflow/dbt/weather_project # 로컬의 dbt 폴더를 컨테이너의 dbt 폴더와 동기화 (dbt 프로젝트 관리)
             - ./dbt/profiles:/home/airflow/.dbt 
+            - ./notebooks/gx:/opt/airflow/gx # Great Expectations 프로젝트 공유
         ports:
             - "8080:8080"
         command: webserver
@@ -62,6 +63,7 @@ services:
             - ./data:/opt/airflow/data
             - ./dbt/weather_project:/opt/airflow/dbt/weather_project
             - ./dbt/profiles:/home/airflow/.dbt
+            - ./notebooks/gx:/opt/airflow/gx
         command: scheduler
 
     jupyter:
@@ -72,6 +74,7 @@ services:
         volumes:
             - ./notebooks:/home/jovyan/notebooks # 로컬의 notebooks 폴더를 컨테이너의 작업 폴더와 동기화
             - ./dbt:/home/jovyan/dbt # 로컬의 dbt 폴더를 컨테이너에 마운트하여 dbt 프로젝트를 관리
+            - ./data:/opt/airflow/data # 로컬의 data 폴더를 컨테이너의 data 폴더와 동기화
         command: start-notebook.sh --NotebookApp.token='' # 비밀번호 없이 Jupyter Lab을 실행하는 명령어 , 로컬용
 
 # Docker 볼륨을 최종적으로 정의하는 섹션. 데이터 영속성을 위해 사용
