@@ -57,11 +57,15 @@ def KMA_SHORT_FORECAST_PIPELINE():
         }
 
         try:
-            response = requests.get(url, params=params, timeout=10) # API 요청
+            response = requests.get(url, params=params, timeout=30) # API 요청
             response.raise_for_status() # 200번대 응답 코드가 아니면 에러를 발생
 
             # JSON 응답에서 실제 데이터가 있는 'item' 리스트를 추출
-            items = response.json().get("response", {}).get("body", {}).get("items", {}).get("item")
+            items = response.json().get("response", {}).get("body", {}).get("items", {}).get("item", [])
+
+            if not items:
+                logging.info(f"'{base_date}' 단기예보 데이터가 없습니다.")
+                return
 
             df = pd.DataFrame(items) # JSON 데이터를 DataFrame으로 변환
 
