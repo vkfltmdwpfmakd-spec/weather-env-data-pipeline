@@ -19,7 +19,7 @@ import logging # 로그를 기록하기 위한
 
 def AIRKOREA_AIR_QUALITY_PIPELINE():
     """
-        ### 대기질 데이터 수집 및 MinIO 저장 파이프라인
+        대기질 데이터 수집 및 MinIO 저장 파이프라인
         1. Airflow UI에 저장된 에어코리아 API 키를 Variable로 읽어옵니다.
         2. 측정소별 실시간 측정정보 API에서 데이터를 JSON 형태로 가져옵니다.
         3. JSON 데이터를 Pandas DataFrame으로 변환 후 CSV 파일로 저장합니다.
@@ -65,13 +65,13 @@ def AIRKOREA_AIR_QUALITY_PIPELINE():
 
             client = Minio(
                 "minio:9000",
-                access_key="airflow",
-                secret_key="airflowminio",
+                access_key="minio",
+                secret_key="minio1234",
                 secure=False
             )
-
+    
             bucket_name = "airkorea-air-quality"
-            object_name = f"airkorea_air_quality_{search_date}.csv"
+            object_name = f"raw/airkorea_air_quality_{search_date}.csv"
 
             if not client.bucket_exists(bucket_name):
                 client.make_bucket(bucket_name)

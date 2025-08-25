@@ -18,8 +18,8 @@ services:
             - "9000:9000" # S3 API 포트
             - "9001:9001" # minio 웹 UI 포트
         environment:
-            - MINIO_ROOT_USER=airflow
-            - MINIO_ROOT_PASSWORD=airflowminio
+            - MINIO_ROOT_USER=minio
+            - MINIO_ROOT_PASSWORD=minio1234
         # MinIO 서버를 실행하는 명령어. /data 디렉토리를 스토리지로 사용하고, 9001 포트에서 웹 UI를 실행
         command: server /data --console-address ":9001"
         volumes:

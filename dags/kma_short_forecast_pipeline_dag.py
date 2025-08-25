@@ -77,8 +77,8 @@ def KMA_SHORT_FORECAST_PIPELINE():
             # MinIO 클라이언트 생성 , airflow Connection 에서 불러오도록 할 예정 [디버깅]
             client = Minio(
                 "minio:9000", # Docker Compose 환경 , 로컬 직접 실행시 "localhost:9000" 
-                access_key="airflow",
-                secret_key="airflowminio",
+                access_key="minio",
+                secret_key="minio1234",
                 secure=False # HTTP 사용 (개발환경)
             ) 
 

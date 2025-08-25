@@ -6,6 +6,12 @@ requests==2.32.3
 
 minio==7.2.7
 
+# Pandas가 DB와 통신할 수 있게 해주는 SQL 툴킷
+SQLAlchemy==1.4.52
+
+# PostgreSQL과 파이썬을 연결하는 드라이버
+psycopg2-binary==2.9.9
+
 # 클라우드 전환 시 추가 라이브러리
 # google-cloud-storage==2.17.0
 
