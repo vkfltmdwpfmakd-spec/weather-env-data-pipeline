@@ -77,6 +77,14 @@ services:
             - ./data:/opt/airflow/data # 로컬의 data 폴더를 컨테이너의 data 폴더와 동기화
         command: start-notebook.sh --NotebookApp.token='' # 비밀번호 없이 Jupyter Lab을 실행하는 명령어 , 로컬용
 
+    metabase:
+        image: metabase/metabase:latest
+        container_name: metabase_dashboard
+        ports:
+            - "3000:3000"
+        depends_on:
+            - postgres
+
 # Docker 볼륨을 최종적으로 정의하는 섹션. 데이터 영속성을 위해 사용
 volumes:
     postgres_data:
