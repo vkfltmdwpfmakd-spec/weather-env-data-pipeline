@@ -1,0 +1,10 @@
+weather-project:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: weather-env-data-pipeline
+      dataset: weather_analytics
+      threads: 1
+      keyfile: /opt/airflow/gcp-keys/weather-env-data-pipeline-4e8d048be7a7.json

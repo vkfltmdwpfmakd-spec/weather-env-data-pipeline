@@ -43,7 +43,7 @@ def load_data_from_minio_to_postgres():
     @task
     def load_short_forecast_data():
         
-        bucket_name = "kma-short-forecast"
+        bucket_name = "kma-forecasts-bucket"
         object_name = f"raw/kma_short_forecast_{yesterday_str}.csv"
         local_file_path = f"/opt/airflow/data/kma_short_forecast_to_load.csv"
         table_name = "kma_short_forecast_staging"
@@ -74,7 +74,7 @@ def load_data_from_minio_to_postgres():
 
         yesterday_str = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
-        bucket_name = "airkorea-air-quality"
+        bucket_name = "airkorea-air-quality-bucket"
         object_name = f"raw/airkorea_air_quality_{yesterday_str}.csv"
         local_file_path = f"/opt/airflow/data/airkorea_air_quality_to_load.csv"
         table_name = "airkorea_air_quality_staging"

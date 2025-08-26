@@ -42,6 +42,7 @@ services:
             - ./dbt/weather_project:/opt/airflow/dbt/weather_project # 로컬의 dbt 폴더를 컨테이너의 dbt 폴더와 동기화 (dbt 프로젝트 관리)
             - ./dbt/profiles:/home/airflow/.dbt 
             - ./notebooks/gx:/opt/airflow/gx # Great Expectations 프로젝트 공유
+            - ./gcp-keys:/opt/airflow/gcp-keys
         ports:
             - "8080:8080"
         command: webserver
@@ -64,6 +65,7 @@ services:
             - ./dbt/weather_project:/opt/airflow/dbt/weather_project
             - ./dbt/profiles:/home/airflow/.dbt
             - ./notebooks/gx:/opt/airflow/gx
+            - ./gcp-keys:/opt/airflow/gcp-keys
         command: scheduler
 
     jupyter:
@@ -75,6 +77,7 @@ services:
             - ./notebooks:/home/jovyan/notebooks # 로컬의 notebooks 폴더를 컨테이너의 작업 폴더와 동기화
             - ./dbt:/home/jovyan/dbt # 로컬의 dbt 폴더를 컨테이너에 마운트하여 dbt 프로젝트를 관리
             - ./data:/opt/airflow/data # 로컬의 data 폴더를 컨테이너의 data 폴더와 동기화
+            - ./gcp-keys:/home/jovyan/gcp-keys # 로컬의 gcp-keys 폴더를 컨테이너의 gcp-keys 폴더와 동기화
         command: start-notebook.sh --NotebookApp.token='' # 비밀번호 없이 Jupyter Lab을 실행하는 명령어 , 로컬용
 
     metabase:

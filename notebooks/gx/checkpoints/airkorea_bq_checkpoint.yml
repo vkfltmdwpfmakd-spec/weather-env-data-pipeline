@@ -1,0 +1,22 @@
+name: airkorea_bq_checkpoint
+config_version: 1.0
+template_name:
+module_name: great_expectations.checkpoint
+class_name: Checkpoint
+run_name_template:
+expectation_suite_name:
+batch_request: {}
+action_list:
+  - name: store_validation_result
+    action:
+      class_name: StoreValidationResultAction
+evaluation_parameters: {}
+runtime_configuration: {}
+validations:
+  - batch_request:
+      datasource_name: bigquery_datasource
+      data_asset_name: airkorea_air_quality_staging
+    expectation_suite_name: airkorea_data_rules
+profilers: []
+ge_cloud_id:
+expectation_suite_ge_cloud_id:

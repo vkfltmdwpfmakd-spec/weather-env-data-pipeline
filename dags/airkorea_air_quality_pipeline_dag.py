@@ -6,7 +6,7 @@ import requests # HTTP 요청 - API요청
 from airflow.decorators import dag, task # Airflow DAG와 Task를 쉽게 만들기 위한
 from airflow.models.variable import Variable # Airflow UI의 Variables를 가져오기 위한
 from minio import Minio # MinIO(S3)와 통신하기 위한
-from datetime import datetime # 파이썬 기본 날짜/시간
+from datetime import datetime, timedelta # 파이썬 기본 날짜/시간
 import logging # 로그를 기록하기 위한
 
 @dag(
@@ -26,12 +26,13 @@ def AIRKOREA_AIR_QUALITY_PIPELINE():
         4. 생성된 CSV 파일을 MinIO 'air-quality' 버킷에 업로드합니다.
     """
     @task
-    def airlkorea_air_quality_pipeline():
+    def extract_and_save_to_minio():
 
         service_key = Variable.get("AIRKOREA_AIR_QUALITY_SERVICE_KEY")
 
         # search_date = "2025-08-24"
-        search_date = datetime.today().strftime("%Y-%m-%d")
+        yesterday = datetime.now() - timedelta(days=1)
+        search_date = yesterday.strftime("%Y-%m-%d")
 
         url = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth"
 
@@ -88,7 +89,7 @@ def AIRKOREA_AIR_QUALITY_PIPELINE():
             logging.error(f"데이터 처리 또는 Minio 업로드 실패: {e}")
             raise
 
-    airlkorea_air_quality_pipeline()
+    extract_and_save_to_minio()
 
 AIRKOREA_AIR_QUALITY_PIPELINE()
 

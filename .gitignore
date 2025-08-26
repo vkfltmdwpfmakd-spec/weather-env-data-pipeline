@@ -19,7 +19,19 @@
 
 # Jupyter 관련 파일들
 .ipynb_checkpoints/
+/notebooks/gx/.ipynb_checkpoints/
+
+# GCP 서비스 계정 키
+/gcp-keys/
+/gcp-key/
+*.json
 
 # 임시 파일
 *.tmp
 *.swp
+*.pyc
+__pycache__/
+
+# Docker 관련
+.env.local
+docker-compose.override.yml

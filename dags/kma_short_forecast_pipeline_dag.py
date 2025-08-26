@@ -6,7 +6,7 @@ import requests # HTTP 요청 - API요청
 from airflow.decorators import dag, task # Airflow DAG와 Task를 쉽게 만들기 위한
 from airflow.models.variable import Variable # Airflow UI의 Variables를 가져오기 위한
 from minio import Minio # MinIO(S3)와 통신하기 위한
-from datetime import datetime # 파이썬 기본 날짜/시간
+from datetime import datetime, timedelta # 파이썬 기본 날짜/시간
 import logging # 로그를 기록하기 위한
 
 # DAG 정의: 파이프라인의 전체 구조와 속성을 설정
@@ -36,7 +36,8 @@ def KMA_SHORT_FORECAST_PIPELINE():
         service_key = Variable.get("KMA_SHORT_FORECAST_KEY") # API KEY 설정
 
         # base_date = "20250824"
-        base_date = datetime.now().strftime("%Y%m%d") # 현재 날짜
+        yesterday = datetime.now() - timedelta(days=1)
+        base_date = yesterday.strftime("%Y%m%d") # 어제 날짜
         base_time = "0600" # 발표시각 6시
         # 하드코딩이 아닌 여러 지역의 데이터를 가져 올 수 있도록 할 예정 [디버깅]
         nx = "55" # 예보지점 X 좌표

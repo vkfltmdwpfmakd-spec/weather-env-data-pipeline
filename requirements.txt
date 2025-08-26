@@ -12,24 +12,24 @@ SQLAlchemy==1.4.52
 # PostgreSQL과 파이썬을 연결하는 드라이버
 psycopg2-binary==2.9.9
 
-# dbt 패키지 
-dbt-core==1.7.0
+# dbt 패키지 (버전 호환성을 위해 1.8.x로 통일)
+dbt-core==1.8.7
 
 # dbt Postgres 연동
-dbt-postgres==1.7.0
+dbt-postgres==1.8.2
 
 # 데이터 품질을 검사하고 문서화, 프로파일링을 자동화하는 도구
 great-expectations==0.18.15
 
 
 # 클라우드 전환 시 추가 라이브러리
-# google-cloud-storage==2.17.0
+google-cloud-storage==2.17.0
 
 # Airflow가 BigQuery, GCS 등 구글 클라우드 서비스와 상호작용할 수 있도록
-# apache-airflow-providers-google==10.19.0
+apache-airflow-providers-google==10.19.0
 
 # dbt가 Google BigQuery에 연결하여 데이터 변환 작업을 수행할 수 있도록
-# dbt-bigquery==1.8.1
+dbt-bigquery==1.8.1
 
 
 
