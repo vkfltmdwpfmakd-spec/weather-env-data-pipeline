@@ -50,8 +50,8 @@ def transform_data_with_dbt_pipeline():
             threads: 1
         EOF
         
-        # dbt 실행
-        cd /opt/airflow/dbt/weather_project && dbt run --log-path /tmp/dbt_logs
+        # dbt 실행 (PostgreSQL 전용 모델만)
+        cd /opt/airflow/dbt/weather_project && dbt run --select daily_air_quality_forecast daily_short_forecast_summary --log-path /tmp/dbt_logs
         """
     )
 

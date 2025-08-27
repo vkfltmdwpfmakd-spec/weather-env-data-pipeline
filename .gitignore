@@ -11,7 +11,11 @@
 /dbt/target/
 /dbt/**/*.log
 /dbt/profiles/profiles.yml
+/dbt/profiles_bigquery/.user.yml
+/dbt/**/.user.yml
 /dbt/.ipynb_checkpoints/
+/dbt/**/target/
+/dbt/**/logs/
 
 # Great Expectations 관련 파일들
 /notebooks/gx/uncommitted/

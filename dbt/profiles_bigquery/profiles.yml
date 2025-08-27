@@ -1,4 +1,4 @@
-weather-project:
+weather_project:
   target: dev
   outputs:
     dev:

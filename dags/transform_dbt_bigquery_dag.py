@@ -26,9 +26,19 @@ def transform_dbt_bigquery_pipeline():
     
     dbt_run_bigquery_task = BashOperator(
         task_id="run_dbt_bigquery_models",
-        # --profiles-dir 옵션으로 BigQuery용 프로필 폴더를 지정합니다.
-        # dbt 프로젝트 폴더와 profiles_bigquery 폴더를 모두 Airflow에 마운트해야 합니다.
-        bash_command="cd /opt/airflow/dbt/weather_project && dbt run --profiles-dir ../../dbt_profiles/bigquery"
+        # --profiles-dir 옵션으로 BigQuery용 프로필 폴더를 지정
+        # dbt 프로젝트 폴더와 profiles_bigquery 폴더를 모두 Airflow에 마운트해야 함
+        bash_command=(
+            "cd /opt/airflow/dbt/weather_project && "
+            "dbt run "
+            # BigQuery용 프로필 폴더를 지정합니다.
+            "--profiles-dir ../../dbt_profiles/bigquery "
+            # BigQuery 전용 모델만 실행
+            "--select daily_air_quality_forecast_bigquery daily_short_forecast_summary_bigquery "
+            # 권한 문제로 tmp 로 설정
+            "--log-path /tmp/dbt_logs "
+            "--target-path /tmp/dbt_target"
+        )
     )
     
     # 의존성 설정

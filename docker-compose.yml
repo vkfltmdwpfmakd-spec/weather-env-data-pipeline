@@ -43,6 +43,7 @@ services:
             - ./dbt/profiles:/home/airflow/.dbt 
             - ./notebooks/gx:/opt/airflow/gx # Great Expectations 프로젝트 공유
             - ./gcp-keys:/opt/airflow/gcp-keys
+            - ./dbt/profiles_bigquery:/opt/airflow/dbt_profiles/bigquery
         ports:
             - "8080:8080"
         command: webserver
@@ -66,6 +67,7 @@ services:
             - ./dbt/profiles:/home/airflow/.dbt
             - ./notebooks/gx:/opt/airflow/gx
             - ./gcp-keys:/opt/airflow/gcp-keys
+            - ./dbt/profiles_bigquery:/opt/airflow/dbt_profiles/bigquery
         command: scheduler
 
     jupyter:

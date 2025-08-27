@@ -1,0 +1,13 @@
+# BigQuery 전용 소스 정의
+version: 2
+
+# BigQuery 원본 데이터 소스들을 정의하는 섹션
+sources:
+
+  # BigQuery 소스 그룹의 이름을 정의
+  - name: weather_staging
+
+    # 이 소스 그룹에 속한 테이블
+    tables:
+      - name: kma_short_forecast_staging
+      - name: airkorea_air_quality_staging
